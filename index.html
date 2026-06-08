@@ -183,7 +183,6 @@
     <div class="cover-title">ALGORITHM<br><span>GHOST</span></div>
     <div class="cover-sub">거울 속 또 다른 나</div>
     <div class="cover-img-wrap">
-      <!-- 경로 수정: media/ 폴더 반영 -->
       <video class="cover-img" src="media/COVER.mp4" width="1380" height="950" autoplay loop muted playsinline></video>
     </div>
     <div class="cover-synopsis">
@@ -245,7 +244,7 @@
     </div>
 
     <div id="visual-col">
-      <video id="vis-scene-img" src="" width="1380" height="950" autoplay loop muted playsinline></video>
+      <video id="vis-scene-img" src="" width="1380" height="950" autoplay loop playsinline></video>
       <div class="vis-grid"></div>
     </div>
 
@@ -262,7 +261,7 @@
 <div id="ending">
   <div class="ending-inner">
     <div class="ending-title" id="ending-title"></div>
-    <div class="ending-image-wrap" id="ending-image-wrap"><video id="ending-img" src="" width="1380" height="950" autoplay loop muted playsinline></video></div>
+    <div class="ending-image-wrap" id="ending-image-wrap"><video id="ending-img" src="" width="1380" height="950" autoplay loop playsinline></video></div>
     <div class="ending-body" id="ending-body"></div>
     <button class="reboot-btn" onclick="location.reload()">[ SYSTEM REBOOT ]</button>
   </div>
@@ -272,8 +271,7 @@
   <div class="gameover-inner">
     <div class="gameover-title">FORMAT COMPLETE</div>
     <div class="gameover-sub">// K-0913 · EXISTENCE TERMINATED</div>
-    <!-- 경로 수정: media/ 폴더 반영 -->
-    <div class="gameover-image-wrap"><video src="media/G-OVER.mp4" width="1380" height="950" autoplay loop muted playsinline></video></div>
+    <div class="gameover-image-wrap"><video src="media/G-OVER.mp4" width="1380" height="950" autoplay loop playsinline></video></div>
     <div class="gameover-body" id="gameover-body">퍼펙트 원: "(오차 없이 균일하고 차가운 기계음) 연산 오류 객체 강제 격리 및 포맷 알고리즘 완료. 시스템 가용 메모리 풀을 정상 수치로 복원합니다."
 
 [FORMAT COMPLETE: 당신은 애초에 존재하지 않았습니다]
@@ -290,7 +288,6 @@
   let state = { sync: 50, integ: 40, noise: 10, adminKey: false };
   const PROGRESS = { S1: 0, S2: 25, RE_S2: 15, S3: 50, S4: 72, S5: 90, S6: 100 };
 
-  // 경로 수정: media/ 폴더 반영
   const SCENE_IMAGES = {
     S1:    'media/S1.mp4',
     S2:    'media/S2.mp4',
@@ -454,7 +451,7 @@ K: "(거울에 손을 밀착시키고 이 악물며 단호하게) 가만히 앉�
   S5: {
     label:'FINAL_LOG',
     nodeLabel:'데이터 강탈 — 마지막 저항',
-    text:`퍼펙트 원 (원격 경고): "(전방위 스피커의 고압적 음성) 관리자 권한으로 최종 명령합니다. K, 당신의 모든 프로세스를 즉시 정지하세요. 더 이상의 저항은 무의미한 자원 낭비일 뿐입니다."
+    text:`퍼펙트 원 (원격 경고): "(전방위 스피커의 고압적 음성) 관리자 권한으로 최종 명령합니다. K, 당신의 모든 프로세스를 즉시 정지하세요. 더 정항은 무의미한 자원 낭비일 뿐입니다."
 
 (지문: 엄청난 압박감에 무릎을 꿇은 K가 가쁘게 숨을 몰아쉰다. 사투가 한낱 노이즈이자 자원 낭비로 취급받자 모멸감과 분노가 치민다. 바닥 타일을 긁어내듯 단호하게 다시 일어선다. 땀방울을 닦지도 않은 채 홀로그램을 노려본다.)
 
@@ -512,7 +509,7 @@ K: "(레버를 당기기 직전, 조용히 조소를 날리며 승자의 여유�
 
   END_REBEL:{
     isEnding:true,
-    endImg:'media/END-A.mp4', // 경로 수정 반영
+    endImg:'media/END-A.mp4',
     type:'END_A : 혁명가',
     titleClass:'revolution',
     body:`[SYSTEM LOG: K라는 유령이 이곳을 다녀감]
@@ -526,7 +523,7 @@ K의 흔적만이 어둠 속에 남는다.`
 
   END_PART:{
     isEnding:true,
-    endImg:'media/END-B.mp4', // 경로 수정 반영
+    endImg:'media/END-B.mp4',
     type:'END_B : 인도주의자',
     titleClass:'assimilation',
     body:`[SYSTEM LOG: 이름 없던 존재들이 자신의 로그를 되찾는다]
@@ -540,7 +537,7 @@ K의 흔적만이 어둠 속에 남는다.`
 
   END_ERASE:{
     isEnding:true,
-    endImg:'media/G-OVER.mp4', // 경로 수정 반영 (혹시 파일이 없다면 추후 이름을 맞춰주세요)
+    endImg:'media/G-OVER.mp4',
     type:'END_C : 소멸',
     titleClass:'erasure',
     body:`[SYSTEM LOG: K-0913 — 데이터 소각 완료]
@@ -558,7 +555,6 @@ K라는 이름은 어떤 로그에도 남지 않는다.
   }
 };
 
-  // 음성 지시 괄호만 제거 (지문은 유지) + 화자 간 줄간격 추가
   function stripDirections(text) {
     return text
       .replace(/:\s*"\(([^)]{1,120})\)\s*/g, ': "')
@@ -570,7 +566,6 @@ K라는 이름은 어떤 로그에도 남지 않는다.
       .trim();
   }
 
-  // ─── 효과음 (Web Audio API) ───
   const AudioCtx = window.AudioContext || window.webkitAudioContext;
   let actx = null;
 
@@ -579,7 +574,6 @@ K라는 이름은 어떤 로그에도 남지 않는다.
     return actx;
   }
 
-  // 씬 전환음
   function playTransition() {
     const ctx = getCtx();
     const t = ctx.currentTime;
@@ -606,7 +600,6 @@ K라는 이름은 어떤 로그에도 남지 않는다.
     osc.start(t); osc.stop(t + 0.25);
   }
 
-  // 선택지 클릭음
   function playClick() {
     const ctx = getCtx();
     const t = ctx.currentTime;
@@ -621,7 +614,6 @@ K라는 이름은 어떤 로그에도 남지 않는다.
     osc.start(t); osc.stop(t + 0.06);
   }
 
-  // 게임오버음
   function playGameOver() {
     const ctx = getCtx();
     const t = ctx.currentTime;
@@ -638,7 +630,6 @@ K라는 이름은 어떤 로그에도 남지 않는다.
     });
   }
 
-  // 엔딩음
   function playEnding() {
     const ctx = getCtx();
     const t = ctx.currentTime;
