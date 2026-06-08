@@ -50,7 +50,7 @@
   .vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 30%, var(--black) 80%); }
   .cover-inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; max-width: 680px; width: 100%; gap: 0; }
   .cover-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.25em; color: var(--violet); margin-bottom: 8px; opacity: 0; animation: fadeUp 0.8s 0.2s ease forwards; }
-  .cover-title { font-family: var(--display); font-size: clamp(36px, 7vw, 72px); line-height: 0.9; color: var(--text-primary); text-align: center; opacity: 0; animation: fadeUp 0.8s 0.4s ease forwards; margin-bottom: 4px; }
+  .cover-title { font-family: var(--display); font-size: clamp(36px, 7vw, 72px); line-height: 0.9; color: var(--text-primary); text-align: center; opacity: 0; animation: fadeUp 0.8s 0.4s ease forwards; margin-bottom: 4px; cursor: pointer; }
   .cover-title span { color: var(--violet); }
   .cover-sub { font-family: var(--sans); font-size: 12px; font-weight: 300; letter-spacing: 0.15em; color: var(--text-muted); margin-bottom: 12px; opacity: 0; animation: fadeUp 0.8s 0.6s ease forwards; }
 
@@ -180,7 +180,7 @@
   </div>
   <div class="cover-inner">
     <div class="cover-eyebrow">// INTERACTIVE FICTION · 204X</div>
-    <div class="cover-title">ALGORITHM<br><span>GHOST</span></div>
+    <div class="cover-title" onclick="location.reload()" style="cursor:pointer;">ALGORITHM<br><span>GHOST</span></div>
     <div class="cover-sub">거울 속 또 다른 나</div>
     <div class="cover-img-wrap">
       <video class="cover-img" src="media/COVER.mp4" width="1380" height="950" autoplay loop muted playsinline></video>
