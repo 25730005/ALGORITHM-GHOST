@@ -206,7 +206,7 @@
     <div class="cover-title" onclick="location.reload()" style="cursor:pointer;">ALGORITHM<br><span>GHOST</span></div>
     <div class="cover-sub">거울 속 또 다른 나</div>
     <div class="cover-img-wrap">
-      <video class="cover-img" src="media/COVER.mp4" width="1380" height="950" autoplay loop muted playsinline></video>
+      <video class="cover-img" src="media/COVER.mp4" volume="0.7" width="1380" height="950" autoplay loop muted playsinline></video>
     </div>
     <div class="cover-synopsis">
       204X년, 거대 AI <em>'오라클'</em>이 지배하는 회색빛 도시.<br>
@@ -225,7 +225,7 @@
 </div>
 
 <div id="game">
-  <div id="game-logo" onclick="location.reload()"><span>ALGORITHM GHOST</span><span style="display:flex;align-items:center;gap:14px;"><span id="logo-node">NODE_S1</span><button id="muteBtn" onclick="toggleMediaMute(event)" style="background:none;border:1px solid rgba(255,255,255,.15);color:#ccc;padding:4px 8px;cursor:pointer;">🔊</button></span></div>
+  <div id="game-logo" onclick="location.reload()"><span>ALGORITHM GHOST</span><span style="display:flex;align-items:center;gap:14px;"><span id="logo-node">NODE_S1</span><button id="volumeBtn" onclick="cycleVideoVolume(event)" style="min-width:95px;height:34px;background:rgba(120,80,255,.15);border:1px solid rgba(120,80,255,.35);color:#ddd;padding:0 12px;cursor:pointer;font-family:Share Tech Mono;font-size:12px;border-radius:6px;">🔊 70%</button></span></div>
   <div id="hud">
     <div class="hud-cell">
       <div class="hud-label">SYNC</div>
@@ -682,36 +682,34 @@ K라는 이름은 어떤 로그에도 남지 않는다.
   }
 
   
-let mediaMuted = false;
 
-function stopAllMedia(){
+let videoVolumeIndex = 0;
+const videoVolumes = [0.7, 0.4, 0.2, 0];
+const videoIcons = ['🔊 70%','🔉 40%','🔈 20%','🔇 0%'];
+
+
+function stopSceneAudio(){
   const sceneAudio = document.getElementById('sceneAudio');
   if(sceneAudio){
     sceneAudio.pause();
     sceneAudio.currentTime = 0;
-    sceneAudio.removeAttribute('src');
+    sceneAudio.src = '';
     sceneAudio.load();
   }
-
-  document.querySelectorAll('video').forEach(v=>{
-    try{
-      v.pause();
-      v.currentTime = 0;
-    }catch(e){}
-  });
 }
 
-function toggleMediaMute(event){
+function cycleVideoVolume(event){
   event.stopPropagation();
 
-  mediaMuted = !mediaMuted;
+  videoVolumeIndex = (videoVolumeIndex + 1) % videoVolumes.length;
 
   document.querySelectorAll('video').forEach(v=>{
-    v.muted = mediaMuted;
+    v.volume = videoVolumes[videoVolumeIndex];
+    v.muted = false;
   });
 
-  const btn = document.getElementById('muteBtn');
-  if(btn) btn.textContent = mediaMuted ? '🔇' : '🔊';
+  document.getElementById('volumeBtn').textContent =
+    videoIcons[videoVolumeIndex];
 }
 
 
@@ -725,13 +723,13 @@ function initGame(){
     const s = scenes[id];
     const overlay = document.getElementById('glitch-overlay');
 
-    stopAllMedia();
+    stopSceneAudio();
 
     const sceneAudio = document.getElementById('sceneAudio');
 
     const audioPath = `media/${id}.mp3`;
     sceneAudio.src = audioPath;
-    sceneAudio.volume = 1.0;
+    sceneAudio.volume = 0.85;
     sceneAudio.play().catch(() => {});
     
     overlay.classList.add('glitch-active');
@@ -755,7 +753,7 @@ function initGame(){
         document.getElementById('ending-title').className = 'ending-title ' + s.titleClass;
         document.getElementById('ending-image-wrap').className = 'ending-image-wrap ' + s.titleClass;
         const endImg = document.getElementById('ending-img');
-        if(s.endImg){ endImg.src = s.endImg; endImg.muted = mediaMuted; endImg.style.display='block'; }
+        if(s.endImg){ endImg.src = s.endImg; endImg.volume = videoVolumes[videoVolumeIndex]; endImg.muted = false; endImg.style.display='block'; }
         else { endImg.style.display='none'; }
         document.getElementById('ending-body').textContent = s.body;
         document.getElementById('ending').style.display = 'flex';
@@ -776,7 +774,7 @@ function initGame(){
       if(imgSrc){
         imgEl.classList.remove('loaded');
         imgEl.src = imgSrc;
-        imgEl.muted = mediaMuted;
+        imgEl.volume = videoVolumes[videoVolumeIndex]; imgEl.muted = false;
         imgEl.onloadeddata = () => imgEl.classList.add('loaded');
         imgEl.onerror = () => imgEl.classList.remove('loaded');
       } else {
