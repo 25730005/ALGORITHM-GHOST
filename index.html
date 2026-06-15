@@ -147,7 +147,7 @@
   .gameover-inner { display:flex; flex-direction:column; align-items:center; max-width:740px; width:100%; }
   .gameover-title { font-family:var(--display); font-size:clamp(52px,9vw,96px); line-height:1; letter-spacing:0.04em; margin-bottom:8px; color:var(--red); animation: flicker 1.5s infinite; }
   @keyframes flicker { 0%,100%{opacity:1} 48%{opacity:1} 50%{opacity:0.3} 52%{opacity:1} 80%{opacity:1} 82%{opacity:0.5} 84%{opacity:1} }
-  .gameover-sub { font-family:var(--mono); font-size:12px; letter-spacing:0.2em; color:rgba(232,64,64,0.5); margin-bottom:28px; }
+  .gameover-sub { font-family:var(--mono); font-size:14px; letter-spacing:0.2em; color:rgba(232,64,64,0.5); margin-bottom:28px; }
   .gameover-image-wrap { width:100%; aspect-ratio:16/6; border:1px solid rgba(232,64,64,0.25); position:relative; overflow:hidden; margin-bottom:24px; background: radial-gradient(ellipse at 50% 50%, rgba(232,64,64,0.2) 0%, transparent 60%), var(--surface); }
   .gameover-image-wrap video { width:100%; height:100%; object-fit:cover; opacity:0.6; }
   .gameover-body { max-width:520px; font-family:var(--sans); font-size:14px; font-weight:300; line-height:1.9; color:rgba(232,64,64,0.6); text-align:center; white-space:pre-line; }
@@ -225,7 +225,7 @@
 </div>
 
 <div id="game">
-  <div id="game-logo" onclick="location.reload()"><span>ALGORITHM GHOST</span><span style="display:flex;align-items:center;gap:14px;"><span id="logo-node">NODE_S1</span><button id="volumeBtn" onclick="cycleVideoVolume(event)" style="min-width:95px;height:34px;background:rgba(120,80,255,.15);border:1px solid rgba(120,80,255,.35);color:#ddd;padding:0 12px;cursor:pointer;font-family:Share Tech Mono;font-size:12px;border-radius:6px;">🔊 70%</button></span></div>
+  <div id="game-logo" onclick="location.reload()"><span>ALGORITHM GHOST</span><span style="display:flex;align-items:center;gap:14px;"><span id="logo-node">NODE_S1</span><button id="volumeBtn" onclick="cycleVideoVolume(event)" style="min-width:120px;height:42px;background:rgba(120,80,255,.15);border:1px solid rgba(120,80,255,.35);color:#ddd;padding:0 16px;cursor:pointer;font-family:Share Tech Mono;font-size:14px;border-radius:6px;">🔊 50%</button></span></div>
   <div id="hud">
     <div class="hud-cell">
       <div class="hud-label">SYNC</div>
@@ -684,8 +684,8 @@ K라는 이름은 어떤 로그에도 남지 않는다.
   
 
 let videoVolumeIndex = 0;
-const videoVolumes = [0.7, 0.4, 0.2, 0];
-const videoIcons = ['🔊 70%','🔉 40%','🔈 20%','🔇 0%'];
+const videoVolumes = [0.5, 0.35, 0.2, 0];
+const videoIcons = ['🔊 50%','🔉 35%','🔈 20%','🔇 0%'];
 
 
 function stopSceneAudio(){
@@ -713,7 +713,23 @@ function cycleVideoVolume(event){
 }
 
 
+
+window.addEventListener('load', () => {
+  const coverVideo = document.querySelector('.cover-img');
+  if(coverVideo){
+    coverVideo.volume = 0.5;
+  }
+});
+
 function initGame(){
+
+    const coverVideo = document.querySelector('.cover-img');
+
+    if(coverVideo){
+      coverVideo.pause();
+      coverVideo.currentTime = 0;
+    }
+
     document.getElementById('cover').style.display='none';
     document.getElementById('game').style.display='flex';
     renderScene('S1');
@@ -729,7 +745,7 @@ function initGame(){
 
     const audioPath = `media/${id}.mp3`;
     sceneAudio.src = audioPath;
-    sceneAudio.volume = 0.85;
+    sceneAudio.volume = 0.70;
     sceneAudio.play().catch(() => {});
     
     overlay.classList.add('glitch-active');
