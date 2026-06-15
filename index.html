@@ -284,6 +284,8 @@
 
 <div id="toast"></div>
 
+<audio id="sceneAudio" preload="auto"></audio>
+
 <script>
   let state = { sync: 50, integ: 40, noise: 10, adminKey: false };
   const PROGRESS = { S1: 0, S2: 25, RE_S2: 15, S3: 50, S4: 72, S5: 90, S6: 100 };
@@ -655,6 +657,17 @@ K라는 이름은 어떤 로그에도 남지 않는다.
   function renderScene(id){
     const s = scenes[id];
     const overlay = document.getElementById('glitch-overlay');
+
+    const sceneAudio = document.getElementById('sceneAudio');
+
+    sceneAudio.pause();
+    sceneAudio.currentTime = 0;
+
+    if(id === 'S1'){
+      sceneAudio.src = 'media/S1.mp3';
+      sceneAudio.volume = 1.0;
+      sceneAudio.play().catch(() => {});
+    }
     
     overlay.classList.add('glitch-active');
     playTransition();
