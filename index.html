@@ -225,7 +225,7 @@
 </div>
 
 <div id="game">
-  <div id="game-logo" onclick="location.reload()"><span>ALGORITHM GHOST</span><span id="logo-node">NODE_S1</span></div>
+  <div id="game-logo" onclick="location.reload()"><span>ALGORITHM GHOST</span><span style="display:flex;align-items:center;gap:14px;"><span id="logo-node">NODE_S1</span><button id="muteBtn" onclick="toggleMediaMute(event)" style="background:none;border:1px solid rgba(255,255,255,.15);color:#ccc;padding:4px 8px;cursor:pointer;">🔊</button></span></div>
   <div id="hud">
     <div class="hud-cell">
       <div class="hud-label">SYNC</div>
@@ -681,7 +681,41 @@ K라는 이름은 어떤 로그에도 남지 않는다.
     });
   }
 
-  function initGame(){
+  
+let mediaMuted = false;
+
+function stopAllMedia(){
+  const sceneAudio = document.getElementById('sceneAudio');
+  if(sceneAudio){
+    sceneAudio.pause();
+    sceneAudio.currentTime = 0;
+    sceneAudio.removeAttribute('src');
+    sceneAudio.load();
+  }
+
+  document.querySelectorAll('video').forEach(v=>{
+    try{
+      v.pause();
+      v.currentTime = 0;
+    }catch(e){}
+  });
+}
+
+function toggleMediaMute(event){
+  event.stopPropagation();
+
+  mediaMuted = !mediaMuted;
+
+  document.querySelectorAll('video').forEach(v=>{
+    v.muted = mediaMuted;
+  });
+
+  const btn = document.getElementById('muteBtn');
+  if(btn) btn.textContent = mediaMuted ? '🔇' : '🔊';
+}
+
+
+function initGame(){
     document.getElementById('cover').style.display='none';
     document.getElementById('game').style.display='flex';
     renderScene('S1');
@@ -691,10 +725,9 @@ K라는 이름은 어떤 로그에도 남지 않는다.
     const s = scenes[id];
     const overlay = document.getElementById('glitch-overlay');
 
-    const sceneAudio = document.getElementById('sceneAudio');
+    stopAllMedia();
 
-    sceneAudio.pause();
-    sceneAudio.currentTime = 0;
+    const sceneAudio = document.getElementById('sceneAudio');
 
     const audioPath = `media/${id}.mp3`;
     sceneAudio.src = audioPath;
@@ -722,7 +755,7 @@ K라는 이름은 어떤 로그에도 남지 않는다.
         document.getElementById('ending-title').className = 'ending-title ' + s.titleClass;
         document.getElementById('ending-image-wrap').className = 'ending-image-wrap ' + s.titleClass;
         const endImg = document.getElementById('ending-img');
-        if(s.endImg){ endImg.src = s.endImg; endImg.style.display='block'; }
+        if(s.endImg){ endImg.src = s.endImg; endImg.muted = mediaMuted; endImg.style.display='block'; }
         else { endImg.style.display='none'; }
         document.getElementById('ending-body').textContent = s.body;
         document.getElementById('ending').style.display = 'flex';
@@ -743,6 +776,7 @@ K라는 이름은 어떤 로그에도 남지 않는다.
       if(imgSrc){
         imgEl.classList.remove('loaded');
         imgEl.src = imgSrc;
+        imgEl.muted = mediaMuted;
         imgEl.onloadeddata = () => imgEl.classList.add('loaded');
         imgEl.onerror = () => imgEl.classList.remove('loaded');
       } else {
