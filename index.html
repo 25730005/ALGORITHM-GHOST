@@ -226,7 +226,7 @@
 </div>
 
 <div id="game">
-  <div id="game-logo" onclick="location.reload()"><span>ALGORITHM GHOST</span><span style="display:flex;align-items:center;gap:14px;"><span id="logo-node">NODE_S1</span><button id="volumeBtn" onclick="cycleVideoVolume(event)" style="min-width:120px;height:42px;background:rgba(120,80,255,.15);border:1px solid rgba(120,80,255,.35);color:#ddd;padding:0 16px;cursor:pointer;font-family:Share Tech Mono;font-size:14px;border-radius:6px;">[VOL 50]</button></span></div>
+  <div id="game-logo" onclick="location.reload()"><span>ALGORITHM GHOST</span><span style="display:flex;align-items:center;gap:14px;"><span id="logo-node">NODE_S1</span><div id="volumeBtn" onclick="cycleVideoVolume(event)" style="cursor:pointer;text-align:right;user-select:none;"><div style="font-family:Share Tech Mono;font-size:10px;letter-spacing:.18em;color:#b9bff5;">AUDIO</div><div id="audioBar" style="font-family:Share Tech Mono;font-size:14px;color:#7850ff;">█████</div></div></span></div>
   <div id="hud">
     <div class="hud-cell">
       <div class="hud-label">SYNC</div>
@@ -686,7 +686,7 @@ K라는 이름은 어떤 로그에도 남지 않는다.
 
 let videoVolumeIndex = 0;
 const videoVolumes = [0.5, 0.35, 0.2, 0];
-const videoIcons = ['[VOL 50]','[VOL 35]','[VOL 20]','[MUTE]'];
+const videoIcons = ['█████','███░░','██░░░','░░░░░'];
 
 
 function stopSceneAudio(){
@@ -709,16 +709,27 @@ function cycleVideoVolume(event){
     v.muted = false;
   });
 
-  document.getElementById('volumeBtn').textContent =
-    videoIcons[videoVolumeIndex];
+  document.getElementById('audioBar').textContent = videoIcons[videoVolumeIndex];
 }
 
 
 
 window.addEventListener('load', () => {
+  const forceMuteCover = () => {
+    const cv = document.querySelector('.cover-img');
+    if(cv){
+      cv.muted = true;
+      cv.volume = 0;
+      cv.defaultMuted = true;
+    }
+  };
+  forceMuteCover();
+  setInterval(forceMuteCover,1000);
+
   const coverVideo = document.querySelector('.cover-img');
   if(coverVideo){
-    coverVideo.volume = 0.5;
+    coverVideo.muted = true;
+    coverVideo.volume = 0;
   }
 });
 
