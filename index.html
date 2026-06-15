@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ALGORITHM GHOST - Advanced</title>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Pretendard:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -24,10 +24,10 @@
     --red: #e84040;
     --mono: 'Share Tech Mono', monospace;
     --display: 'Bebas Neue', sans-serif;
-    --sans: 'Noto Sans KR', sans-serif;
+    --sans: 'Pretendard', 'Noto Sans KR', sans-serif;
   }
 
-  html, body { height: 100%; background: var(--black); color: var(--text-primary); font-family: var(--sans); overflow: hidden; }
+  html, body { height: 100%; background: var(--black); color: var(--text-primary); font-family: var(--sans); overflow: hidden; cursor: crosshair; }
 
   /* ─── GLITCH EFFECT (Transition) ─── */
   .glitch-overlay {
@@ -70,6 +70,29 @@
 
   /* ─── GAME ─── */
   #game { display: none; flex-direction: column; height: 100vh; transition: opacity 0.3s; }
+
+
+  #game-logo{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 24px;
+    background:var(--deep);
+    border-bottom:1px solid var(--border);
+    font-family:var(--display);
+    font-size:24px;
+    letter-spacing:0.08em;
+    color:var(--violet);
+    cursor:pointer;
+    text-shadow:0 0 12px rgba(120,80,255,.5);
+  }
+
+  #logo-node{
+    font-family:var(--mono);
+    font-size:11px;
+    color:rgba(200,210,255,0.65);
+    letter-spacing:0.15em;
+  }
 
   /* ── HUD ── */
   #hud { flex-shrink:0; display:grid; grid-template-columns:1fr 1fr 1fr auto; border-bottom:1px solid var(--border); background:var(--deep); }
@@ -139,7 +162,7 @@
   #log-panel { flex:1; overflow-y:auto; padding:24px 32px 12px; scrollbar-width:thin; scrollbar-color:var(--border) transparent; }
   .log-scene-label { font-family:var(--mono); font-size:10px; letter-spacing:0.25em; color:var(--violet); margin-bottom:16px; display:flex; align-items:center; gap:10px; }
   .log-scene-label::after { content:''; flex:1; height:1px; background:var(--border); }
-  #story-text { font-family:var(--sans); font-size:16px; font-weight:300; line-height:2.1; color:rgba(220,225,245,0.85); white-space:pre-line; }
+  #story-text { font-family:var(--sans); font-size:17px; font-weight:400; line-height:2.0; color:rgba(220,225,245,0.85); white-space:pre-line; }
 
   #choice-panel { padding:12px 28px 24px; display:flex; flex-direction:column; gap:10px; }
   
@@ -202,23 +225,24 @@
 </div>
 
 <div id="game">
+  <div id="game-logo" onclick="location.reload()"><span>ALGORITHM GHOST</span><span id="logo-node">NODE_S1</span></div>
   <div id="hud">
     <div class="hud-cell">
-      <div class="hud-label">SYNC_RATE</div>
+      <div class="hud-label">SYNC</div>
       <div class="hud-row">
         <div class="hud-bar"><div id="sync-fill" class="hud-fill"></div></div>
         <div class="hud-val" id="sync-val">50</div>
       </div>
     </div>
     <div class="hud-cell">
-      <div class="hud-label">INTEG_LEVEL</div>
+      <div class="hud-label">INTEG</div>
       <div class="hud-row">
         <div class="hud-bar"><div id="integ-fill" class="hud-fill"></div></div>
         <div class="hud-val" id="integ-val">40</div>
       </div>
     </div>
     <div class="hud-cell">
-      <div class="hud-label">NOISE_DETECT</div>
+      <div class="hud-label">NOISE</div>
       <div class="hud-row">
         <div class="hud-bar"><div id="noise-fill" class="hud-fill"></div></div>
         <div class="hud-val" id="noise-val">10</div>
@@ -226,7 +250,7 @@
     </div>
     <div class="hud-cell hud-scene">
       <div class="scene-dot"></div>
-      <span id="scene-id-label">NODE_S1</span>
+      <span style="opacity:.35">ACTIVE</span>
     </div>
   </div>
 
@@ -558,15 +582,24 @@ K라는 이름은 어떤 로그에도 남지 않는다.
 };
 
   function stripDirections(text) {
-    return text
-      .replace(/:\s*"\(([^)]{1,120})\)\s*/g, ': "')
-      .replace(/\((?!지문)[^)]{1,60}\)/g, '')
-      .replace(/\n{3,}/g, '\n\n')                
-      .replace(/^\s*\n/gm, '')                   
-      .replace(/\n([가-힣A-Z\[\]·\s]+:)/g, '\n\n$1')
-      .replace(/\n{3,}/g, '\n\n')                
-      .trim();
+    return text.trim();
   }
+
+  function formatStoryText(text) {
+    let html = stripDirections(text);
+
+    html = html.replace(/퍼펙트 원:/g, '<span style="color:#e8a020;font-weight:700;font-family:Share Tech Mono;letter-spacing:.05em;">퍼펙트 원:</span>');
+    html = html.replace(/K:/g, '<span style="color:#7850ff;font-weight:700;font-family:Share Tech Mono;letter-spacing:.05em;">K:</span>');
+    html = html.replace(/제로:/g, '<span style="color:#3fd4c5;font-weight:700;font-family:Share Tech Mono;letter-spacing:.05em;">제로:</span>');
+    html = html.replace(/시스템 음성:/g, '<span style="color:#e84040;font-weight:700;font-family:Share Tech Mono;letter-spacing:.05em;">시스템 음성:</span>');
+    html = html.replace(/바트 \(무전\):/g, '<span style="color:#66b3ff;font-weight:700;font-family:Share Tech Mono;letter-spacing:.05em;">바트 (무전):</span>');
+
+    html = html.replace(/\(지문:([\s\S]*?)\)/g,
+      '<div style="color:#8b93a7;font-style:italic;font-size:0.95em;margin:8px 0;">($1)</div>');
+
+    return html.replace(/\n/g,'<br>');
+  }
+
 
   const AudioCtx = window.AudioContext || window.webkitAudioContext;
   let actx = null;
@@ -663,11 +696,10 @@ K라는 이름은 어떤 로그에도 남지 않는다.
     sceneAudio.pause();
     sceneAudio.currentTime = 0;
 
-    if(id === 'S1'){
-      sceneAudio.src = 'media/S1.mp3';
-      sceneAudio.volume = 1.0;
-      sceneAudio.play().catch(() => {});
-    }
+    const audioPath = `media/${id}.mp3`;
+    sceneAudio.src = audioPath;
+    sceneAudio.volume = 1.0;
+    sceneAudio.play().catch(() => {});
     
     overlay.classList.add('glitch-active');
     playTransition();
@@ -700,10 +732,11 @@ K라는 이름은 어떤 로그에도 남지 않는다.
       }
 
       document.getElementById('scene-num').textContent = id;
+      document.getElementById('logo-node').textContent = 'NODE_' + id;
       document.getElementById('scene-title-text').textContent = s.nodeLabel;
       document.getElementById('scene-sublabel').textContent = s.label || '';
       document.getElementById('log-scene-label').textContent = s.label || '';
-      document.getElementById('story-text').textContent = stripDirections(s.text);
+      document.getElementById('story-text').innerHTML = formatStoryText(s.text);
 
       const imgEl = document.getElementById('vis-scene-img');
       const imgSrc = SCENE_IMAGES[id];
