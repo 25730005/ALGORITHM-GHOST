@@ -685,7 +685,7 @@ K라는 이름은 어떤 로그에도 남지 않는다.
   
 
 let videoVolumeIndex = 0;
-const videoVolumes = [0.5, 0.35, 0.2, 0];
+const videoVolumes = [0.45, 0.30, 0.15, 0];
 const videoIcons = ['█████','███░░','██░░░','░░░░░'];
 
 
@@ -742,6 +742,7 @@ function initGame(){
       coverVideo.currentTime = 0;
       coverVideo.removeAttribute('src');
       coverVideo.load();
+      coverVideo.remove();
     }
 
     document.getElementById('cover').style.display='none';
@@ -758,8 +759,8 @@ function initGame(){
     const sceneAudio = document.getElementById('sceneAudio');
 
     const audioPath = `media/${id}.mp3`;
-    sceneAudio.src = audioPath;
-    sceneAudio.volume = 0.70;
+    sceneAudio.pause(); sceneAudio.currentTime = 0; sceneAudio.src = audioPath;
+    sceneAudio.volume = 0.55;
     sceneAudio.play().catch(() => {});
     
     overlay.classList.add('glitch-active');
