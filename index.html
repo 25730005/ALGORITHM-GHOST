@@ -932,15 +932,18 @@ rpt.textContent=buildFinalReport();
       const imgSrc = SCENE_IMAGES[id];
       if(imgSrc){
         imgEl.classList.remove('loaded');
-        imgEl.src = imgSrc;
 
-        if(id === 'S5'){
-          imgEl.volume = 0;
-          imgEl.muted = true;
-        } else {
-          imgEl.volume = videoVolumes[videoVolumeIndex];
-          imgEl.muted = false;
-        }
+        imgEl.pause();
+        imgEl.currentTime = 0;
+        imgEl.removeAttribute('src');
+        imgEl.load();
+
+        imgEl.src = imgSrc;
+        imgEl.load();
+        imgEl.play().catch(()=>{});
+
+        imgEl.volume = videoVolumes[videoVolumeIndex];
+        imgEl.muted = false;
         imgEl.onloadeddata = () => imgEl.classList.add('loaded');
         imgEl.onerror = () => imgEl.classList.remove('loaded');
       } else {
