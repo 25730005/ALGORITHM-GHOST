@@ -582,22 +582,6 @@ K: "(나직하지만 공간을 압도하는 무게감으로) 그 질서가 널 �
   S6:{
     label:'CORE_FINAL',
     nodeLabel:'최후의 판결',
-    onEnter:() => {
-      const s = state.sync;
-      const ig = state.integ;
-      const n = state.noise;
-      console.log('[S6 onEnter] sync='+s+' integ='+ig+' noise='+n);
-      if(n >= s && n >= ig){
-        showToast('NOISE 과부하 — 소멸');
-        return 'G_OVER';
-      }
-      if(ig > s){
-        showToast('INTEG 우세 — 인도주의자');
-        return 'END_PART';
-      }
-      showToast('SYNC 우세 — 혁명가');
-      return 'END_REBEL';
-    },
     text:`퍼펙트 원: "(마지막 에너지를 짜내며 인간의 낮고 가라앉은 음색으로) 결국 여기까지 왔군요, 유령이여. 네가 본 모든 억압은 시스템 유지라는 연산을 위한 필연적 결과였습니다. 이 완벽한 통제의 평화를 깨뜨릴 셈입니까?"
 
 (지문: 목소리의 애절함에 K의 손이 멈춘다. 평화를 깨뜨렸을 때 도시가 마주할 혼란과 무질서라는 거대한 책임감이 어깨를 짓누른다.)
@@ -607,9 +591,16 @@ K: "(코어의 박동을 가만히 바라보며 나직하고 단호하게) 통�
 퍼펙트 원: "(깊은 한숨 같은 기계음과 함께) 이제 판결의 권한은 너에게 있습니다."
 
 K: "(레버를 당기기 직전, 조용히 조소를 날리며 승자의 여유로운 톤으로) 이제 내가 네 시뮬레이션 밖으로 나갈 차례다."`,
-    choices:[
-      { text:'판결을 내린다', next:'S6' }
-    ]
+    getChoices: () => {
+      const s = state.sync, ig = state.integ, n = state.noise;
+      let next;
+      if(n >= s && n >= ig) next = 'G_OVER';
+      else if(ig > s) next = 'END_PART';
+      else next = 'END_REBEL';
+      return [
+        { text:'판결을 내린다', next: next }
+      ];
+    }
   },
 
   END_REBEL:{
