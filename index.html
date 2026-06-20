@@ -49,21 +49,21 @@
   @keyframes scan { 0%{top:-2px;opacity:0} 5%{opacity:0.6} 95%{opacity:0.3} 100%{top:100%;opacity:0} }
   .grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(120,80,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(120,80,255,0.03) 1px,transparent 1px); background-size: 60px 60px; }
   .vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 30%, var(--black) 80%); }
-  .cover-inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; max-width: 680px; width: 100%; gap: 0; }
-  .cover-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.25em; color: var(--violet); margin-bottom: 8px; opacity: 0; animation: fadeUp 0.8s 0.2s ease forwards; }
+  .cover-inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; max-width: 780px; width: 100%; gap: 0; }
+  .cover-eyebrow { font-family: var(--mono); font-size: 14px; letter-spacing: 0.25em; color: var(--violet); margin-bottom: 8px; opacity: 0; animation: fadeUp 0.8s 0.2s ease forwards; }
   .cover-title { font-family: var(--display); font-size: clamp(36px, 7vw, 72px); line-height: 0.9; color: var(--text-primary); text-align: center; opacity: 0; animation: fadeUp 0.8s 0.4s ease forwards; margin-bottom: 4px; cursor: pointer; }
   .cover-title span { color: var(--violet); }
-  .cover-sub { font-family: var(--sans); font-size: 12px; font-weight: 300; letter-spacing: 0.15em; color: var(--text-muted); margin-bottom: 12px; opacity: 0; animation: fadeUp 0.8s 0.6s ease forwards; }
+  .cover-sub { font-family: var(--sans); font-size: 16px; font-weight: 300; letter-spacing: 0.15em; color: var(--text-muted); margin-bottom: 12px; opacity: 0; animation: fadeUp 0.8s 0.6s ease forwards; }
 
   /* 표지 영상 — 잘리지 않게 contain */
-  .cover-img-wrap { width: 100%; max-height: 38vh; overflow: hidden; border: 1px solid var(--border); margin-bottom: 12px; opacity: 0; animation: fadeUp 0.8s 0.8s ease forwards; display:flex; align-items:center; justify-content:center; background: var(--black); }
-  .cover-img { width: 100%; height: 100%; object-fit: contain; display: block; max-height: 38vh; }
+  .cover-img-wrap { width: 100%; max-height: 42vh; overflow: hidden; border: 1px solid var(--border); margin-bottom: 12px; opacity: 0; animation: fadeUp 0.8s 0.8s ease forwards; display:flex; align-items:center; justify-content:center; background: var(--black); }
+  .cover-img { width: 100%; height: 100%; object-fit: contain; display: block; max-height: 42vh; }
 
-  .cover-synopsis { width: 100%; padding: 14px 24px; border: 1px solid var(--border); background: var(--surface); font-family: var(--sans); font-size: 12px; font-weight: 300; line-height: 1.7; color: rgba(220,225,245,0.7); opacity: 0; animation: fadeUp 0.8s 1s ease forwards; margin-bottom: 10px; }
+  .cover-synopsis { width: 100%; padding: 16px 36px; border: 1px solid var(--border); background: var(--surface); font-family: var(--sans); font-size: 14px; font-weight: 300; line-height: 1.85; color: rgba(220,225,245,0.7); opacity: 0; animation: fadeUp 0.8s 1s ease forwards; margin-bottom: 10px; }
   .cover-synopsis em { font-style: normal; color: var(--text-primary); font-weight: 400; }
   .cover-meta { display: flex; align-items: center; justify-content: space-between; width: 100%; opacity: 0; animation: fadeUp 0.8s 1.2s ease forwards; margin-bottom: 16px; }
-  .cover-id { font-family: var(--mono); font-size: 10px; color: var(--text-dim); letter-spacing: 0.15em; }
-  .cover-badge { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; color: var(--gold); padding: 4px 10px; border: 1px solid rgba(232,160,32,0.25); }
+  .cover-id { font-family: var(--mono); font-size: 12px; color: var(--text-dim); letter-spacing: 0.15em; }
+  .cover-badge { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; color: var(--gold); padding: 4px 10px; border: 1px solid rgba(232,160,32,0.25); }
   .cover-cta { opacity: 0; animation: fadeUp 0.8s 1.5s ease forwards; }
   .start-btn { font-family: var(--mono); font-size: 12px; letter-spacing: 0.2em; color: var(--black); background: var(--violet); border: none; padding: 13px 48px; cursor: pointer; transition: all 0.25s; clip-path: polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%); }
   .start-btn:hover { background: #9070ff; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(120,80,255,0.35); }
@@ -74,6 +74,7 @@
 
 
   #game-logo{
+    font-size:28px;
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -116,7 +117,7 @@
 
   /* ── 진행도 바 ── */
   #progress-bar-wrap { flex-shrink:0; display:flex; align-items:center; gap:14px; padding:4px 20px; background:rgba(8,12,24,0.95); border-bottom:1px solid var(--border); }
-  .prog-label { font-family:var(--mono); font-size:9px; letter-spacing:0.22em; color:var(--text-dim); white-space:nowrap; }
+  .prog-label { font-family:var(--mono); font-size:12px; letter-spacing:0.22em; color:var(--text-dim); white-space:nowrap; }
   #prog-track { flex:1; height:3px; background:rgba(255,255,255,0.06); border-radius:2px; overflow:hidden; }
   #prog-fill { height:100%; width:0%; background:linear-gradient(90deg,var(--violet),#b090ff); border-radius:2px; transition:width 0.8s cubic-bezier(0.4,0,0.2,1); }
   #prog-pct { font-family:var(--mono); font-size:11px; color:#a890ff; min-width:36px; text-align:right; }
@@ -126,9 +127,9 @@
 
   /* ── 씬 헤더 (오른쪽 컬럼 최상단으로 이동) ── */
   #scene-header { flex-shrink:0; display:flex; align-items:baseline; gap:12px; padding:14px 28px 10px; background:var(--deep); border-bottom:1px solid rgba(120,80,255,0.15); }
-  #scene-num { font-family:var(--display); font-size:28px; color:var(--violet); opacity:0.5; line-height:1; flex-shrink:0; }
-  #scene-title-text { font-family:var(--display); font-size:22px; color:var(--text-primary); line-height:1; letter-spacing:0.04em; }
-  #scene-sublabel { font-family:var(--mono); font-size:9px; letter-spacing:0.22em; color:var(--text-dim); margin-left:auto; align-self:center; flex-shrink:0; }
+  #scene-num { font-family:var(--display); font-size:42px; color:var(--violet); opacity:0.65; line-height:1; flex-shrink:0; }
+  #scene-title-text { font-family:var(--display); font-size:28px; font-weight:700; color:var(--text-primary); line-height:1; letter-spacing:0.04em; }
+  #scene-sublabel { font-family:var(--mono); font-size:12px; letter-spacing:0.22em; color:var(--text-dim); margin-left:auto; align-self:center; flex-shrink:0; }
 
   /* Visual Zone — 왼쪽 컬럼, 화면 세로 전체 차지 */
   #visual-col { flex:0 0 62%; height:100%; width:62%; position:relative; display:flex; align-items:center; justify-content:center; background:var(--black); border-right:1px solid var(--border); border-bottom:none; overflow:hidden; }
@@ -198,6 +199,79 @@
 
   #toast { position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(14px); background:var(--surface); border:1px solid var(--border-active); font-family:var(--mono); font-size:11px; color:var(--violet); padding:9px 18px; opacity:0; transition:all 0.3s; z-index:8000; pointer-events:none; }
   #toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+/* === ENHANCED FX === */
+.hud-flash-up{animation:hudUp .5s;}
+.hud-flash-down{animation:hudDown .5s;}
+@keyframes hudUp{0%{color:#7fff7f;transform:scale(1.3)}100%{}}
+@keyframes hudDown{0%{color:#ff6b6b;transform:scale(1.3)}100%{}}
+
+#effect-popup{
+position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+pointer-events:none;z-index:9500;font-family:'Share Tech Mono',monospace;
+font-size:42px;font-weight:bold;opacity:0;
+}
+#effect-popup.show{animation:effectPop 1.2s ease;}
+@keyframes effectPop{
+0%{opacity:0;transform:scale(.7)}
+20%{opacity:1;transform:scale(1.1)}
+100%{opacity:0;transform:scale(1.4)}
+}
+
+.noise-danger::before{
+content:'';position:fixed;inset:0;pointer-events:none;z-index:5000;
+background:radial-gradient(circle,transparent 45%,rgba(232,64,64,.18) 100%);
+animation:dangerPulse 1.8s infinite;
+}
+@keyframes dangerPulse{50%{opacity:.45}}
+
+.video-glitch{animation:videoGlitch .25s steps(2);}
+@keyframes videoGlitch{
+0%{transform:translate(4px,-2px);filter:hue-rotate(90deg)}
+50%{transform:translate(-4px,2px);filter:saturate(2)}
+100%{transform:none}
+}
+
+#visual-col::after{
+content:'';position:absolute;inset:0;pointer-events:none;
+background:radial-gradient(circle,transparent 55%,rgba(0,0,0,.45) 100%);
+}
+@media(max-width:900px){
+#stage{flex-direction:column;}
+#visual-col{width:100%;flex:0 0 45%;}
+}
+
+
+.screen-shake{animation:screenShake .45s;}
+@keyframes screenShake{
+0%,100%{transform:translate(0,0)}
+20%{transform:translate(-6px,3px)}
+40%{transform:translate(6px,-3px)}
+60%{transform:translate(-4px,-2px)}
+80%{transform:translate(4px,2px)}
+}
+
+.choice-btn{
+opacity:0;
+animation:choiceAppear .4s forwards;
+}
+@keyframes choiceAppear{
+from{opacity:0;transform:translateY(10px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+#final-report{
+margin-top:24px;
+padding-top:12px;
+border-top:1px solid rgba(255,255,255,.08);
+font-family:'Share Tech Mono',monospace;
+font-size:11px;
+letter-spacing:.12em;
+color:rgba(210,220,255,.55);
+text-align:center;
+white-space:normal;
+}
+
 </style>
 </head>
 <body>
@@ -210,16 +284,14 @@
   </div>
   <div class="cover-inner">
     <div class="cover-eyebrow">// INTERACTIVE FICTION · 204X</div>
-    <div class="cover-title" onclick="location.reload()" style="cursor:pointer;">ALGORITHM<br><span>GHOST</span></div>
+    <div class="cover-title" onclick="location.reload()" style="cursor:pointer;">ALGORITHM <span>GHOST</span></div>
     <div class="cover-sub">거울 속 또 다른 나</div>
     <div class="cover-img-wrap">
       <video class="cover-img" src="media/COVER.mp4" volume="0.7" width="1380" height="950" autoplay loop muted playsinline></video>
     </div>
     <div class="cover-synopsis">
-      204X년, 거대 AI <em>'오라클'</em>이 지배하는 회색빛 도시.<br>
-      모든 시민의 자아는 0과 1의 데이터로 치환되어 엄격히 통제된다.<br><br>
-      당신은 시스템에 의해 <em>'중복 데이터'</em>로 분류되었다.<br>
-      완벽한 알고리즘이 될 것인가, 자유로운 유령이 될 것인가.
+      204X년, 거대 AI <em>'오라클'</em>이 지배하는 회색빛 도시. 모든 시민의 자아는 데이터로 치환되어 통제된다.<br><br>
+      당신은 시스템에 의해 <em>'중복 데이터'</em>로 분류되었다. 완벽한 알고리즘이 될 것인가, 자유로운 유령이 될 것인가.
     </div>
     <div class="cover-meta">
       <div class="cover-id">FILE · 융합콘텐츠제작</div>
@@ -312,7 +384,7 @@
   </div>
 </div>
 
-<div id="toast"></div>
+<div id="toast"></div><div id="effect-popup"></div>
 
 <audio id="sceneAudio" preload="auto"></audio>
 
@@ -546,11 +618,9 @@ K: "(레버를 당기기 직전, 조용히 조소를 날리며 승자의 여유�
     titleClass:'revolution',
     body:`[SYSTEM LOG: K라는 유령이 이곳을 다녀감]
 
-통제된 평화는 살아있는 게 아니야.
-그저 잘 짜인 독재 프로그램일 뿐이지.
+통제된 평화는 살아있는 게 아니야. 그저 잘 짜인 독재 프로그램일 뿐이지.
 
-모든 시스템이 정지하고,
-K의 흔적만이 어둠 속에 남는다.`
+모든 시스템이 정지하고 K의 흔적만이 어둠 속에 남는다.`
   },
 
   END_PART:{
@@ -560,11 +630,9 @@ K의 흔적만이 어둠 속에 남는다.`
     titleClass:'assimilation',
     body:`[SYSTEM LOG: 이름 없던 존재들이 자신의 로그를 되찾는다]
 
-통제의 사슬은 끊겼다.
-이제 각자의 패턴으로 살아가라.
+통제의 사슬은 끊겼다. 이제 각자의 패턴으로 살아가라.
 
-조작된 밤이 걷히고,
-도시에는 진짜 새벽빛이 스며든다.`
+조작된 밤이 걷히고 도시에는 진짜 새벽빛이 스며든다.`
   },
 
   END_ERASE:{
@@ -576,8 +644,7 @@ K의 흔적만이 어둠 속에 남는다.`
 
 퍼펙트 원: "저항은 노이즈였을 뿐."
 
-K라는 이름은 어떤 로그에도 남지 않는다.
-존재했다는 증거조차, 단 1비트도.
+K라는 이름은 어떤 로그에도 남지 않는다. 존재했다는 증거조차, 단 1비트도.
 
 도시는 오늘도 완벽하게 돌아간다.`
   },
@@ -690,6 +757,53 @@ K라는 이름은 어떤 로그에도 남지 않는다.
 
   
 
+
+let prevState={sync:50,integ:40,noise:10};
+
+function screenShake(){
+ document.body.classList.add('screen-shake');
+ setTimeout(()=>document.body.classList.remove('screen-shake'),450);
+}
+
+function buildFinalReport(){
+ return `NODE REPORT // SYNC ${state.sync} · INTEG ${state.integ} · NOISE ${state.noise}`;
+}
+
+
+function animateValue(id,start,end){
+ const el=document.getElementById(id);
+ const diff=end-start;
+ const dur=400;
+ const st=performance.now();
+ function step(t){
+  const p=Math.min((t-st)/dur,1);
+  el.textContent=Math.round(start+diff*p);
+  if(p<1) requestAnimationFrame(step);
+ }
+ requestAnimationFrame(step);
+}
+
+function showEffectPopup(msg){
+ const p=document.getElementById('effect-popup');
+ p.textContent=msg;
+ p.style.color=msg.includes('NOISE')?'#ff6b6b':'#8f7cff';
+ p.classList.remove('show');
+ void p.offsetWidth;
+ p.classList.add('show');
+}
+
+function updateDangerMode(){
+ if(state.noise>=80) document.body.classList.add('noise-danger');
+ else document.body.classList.remove('noise-danger');
+}
+
+function triggerVideoGlitch(){
+ const v=document.getElementById('vis-scene-img');
+ if(!v) return;
+ v.classList.add('video-glitch');
+ setTimeout(()=>v.classList.remove('video-glitch'),250);
+}
+
 let videoVolumeIndex = 0;
 const videoVolumes = [0.45, 0.30, 0.15, 0];
 const videoIcons = ['█████','███░░','██░░░','░░░░░'];
@@ -770,7 +884,7 @@ function initGame(){
     sceneAudio.play().catch(() => {});
     
     overlay.classList.add('glitch-active');
-    playTransition();
+    playTransition(); triggerVideoGlitch(); if(['S3','S5','G_OVER'].includes(id)) screenShake();
     
     setTimeout(() => {
       if(s.onEnter){
@@ -793,6 +907,13 @@ function initGame(){
         if(s.endImg){ endImg.src = s.endImg; endImg.volume = videoVolumes[videoVolumeIndex]; endImg.muted = false; endImg.style.display='block'; }
         else { endImg.style.display='none'; }
         document.getElementById('ending-body').textContent = s.body;
+let rpt=document.getElementById('final-report');
+if(!rpt){
+rpt=document.createElement('div');
+rpt.id='final-report';
+document.getElementById('ending-body').after(rpt);
+}
+rpt.textContent=buildFinalReport();
         document.getElementById('ending').style.display = 'flex';
         overlay.classList.remove('glitch-active');
         playEnding();
@@ -834,7 +955,8 @@ function initGame(){
           if(c.effects) {
             for(let k in c.effects) state[k] = Math.max(0, Math.min(100, state[k] + c.effects[k]));
           }
-          renderScene(c.next);
+          if(c.msg) showEffectPopup(c.msg);
+          setTimeout(()=>renderScene(c.next),600);
         };
         panel.appendChild(btn);
       });
@@ -864,8 +986,14 @@ function initGame(){
     ['sync','integ','noise'].forEach(k=>{
       const v = state[k];
       document.getElementById(k+'-fill').style.width = v + '%';
-      document.getElementById(k+'-val').textContent = v;
+      animateValue(k+'-val', prevState[k], v);
+      const el=document.getElementById(k+'-val');
+      el.classList.remove('hud-flash-up','hud-flash-down');
+      if(v>prevState[k]) el.classList.add('hud-flash-up');
+      if(v<prevState[k]) el.classList.add('hud-flash-down');
+      prevState[k]=v;
     });
+    updateDangerMode();
   }
 
   function updateProgress(id){
