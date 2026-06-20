@@ -933,7 +933,14 @@ rpt.textContent=buildFinalReport();
       if(imgSrc){
         imgEl.classList.remove('loaded');
         imgEl.src = imgSrc;
-        imgEl.volume = videoVolumes[videoVolumeIndex]; imgEl.muted = false;
+
+        if(id === 'S5'){
+          imgEl.volume = 0;
+          imgEl.muted = true;
+        } else {
+          imgEl.volume = videoVolumes[videoVolumeIndex];
+          imgEl.muted = false;
+        }
         imgEl.onloadeddata = () => imgEl.classList.add('loaded');
         imgEl.onerror = () => imgEl.classList.remove('loaded');
       } else {
