@@ -49,7 +49,7 @@
   @keyframes scan { 0%{top:-2px;opacity:0} 5%{opacity:0.6} 95%{opacity:0.3} 100%{top:100%;opacity:0} }
   .grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(120,80,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(120,80,255,0.03) 1px,transparent 1px); background-size: 60px 60px; }
   .vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 30%, var(--black) 80%); }
-  .cover-inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; max-width: 900px; width: 100%; gap: 0; }
+  .cover-inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; max-width: 900px; width: 100%; gap: 0; transform:scale(0.88); transform-origin:center center; }
   .cover-eyebrow { font-family: var(--mono); font-size: 14px; letter-spacing: 0.25em; color: var(--violet); margin-bottom: 8px; opacity: 0; animation: fadeUp 0.8s 0.2s ease forwards; }
   .cover-title { font-family: var(--display); font-size: clamp(36px, 7vw, 72px); line-height: 0.9; color: var(--text-primary); text-align: center; opacity: 0; animation: fadeUp 0.8s 0.4s ease forwards; margin-bottom: 4px; cursor: pointer; }
   .cover-title span { color: var(--violet); }
@@ -922,7 +922,18 @@ function initGame(){
         document.getElementById('ending-title').className = 'ending-title ' + s.titleClass;
         document.getElementById('ending-image-wrap').className = 'ending-image-wrap ' + s.titleClass;
         const endImg = document.getElementById('ending-img');
-        if(s.endImg){ endImg.src = s.endImg; endImg.volume = videoVolumes[videoVolumeIndex]; endImg.muted = false; endImg.style.display='block'; }
+        if(s.endImg){
+          endImg.pause();
+          endImg.currentTime = 0;
+          endImg.removeAttribute('src');
+          endImg.load();
+          endImg.src = s.endImg;
+          endImg.volume = videoVolumes[videoVolumeIndex];
+          endImg.muted = false;
+          endImg.load();
+          endImg.play().catch(()=>{});
+          endImg.style.display='block';
+        }
         else { endImg.style.display='none'; }
         document.getElementById('ending-body').textContent = s.body;
 let rpt=document.getElementById('final-report');
@@ -934,7 +945,7 @@ document.getElementById('ending-body').after(rpt);
 rpt.textContent=buildFinalReport();
         document.getElementById('ending').style.display = 'flex';
         overlay.classList.remove('glitch-active');
-        playEnding();
+        // playEnding();
         return;
       }
 
