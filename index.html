@@ -49,7 +49,7 @@
   @keyframes scan { 0%{top:-2px;opacity:0} 5%{opacity:0.6} 95%{opacity:0.3} 100%{top:100%;opacity:0} }
   .grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(120,80,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(120,80,255,0.03) 1px,transparent 1px); background-size: 60px 60px; }
   .vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 30%, var(--black) 80%); }
-  .cover-inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; max-width: 680px; width: 100%; gap: 0; }
+  .cover-inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; max-width: 900px; width: 100%; gap: 0; }
   .cover-eyebrow { font-family: var(--mono); font-size: 14px; letter-spacing: 0.25em; color: var(--violet); margin-bottom: 8px; opacity: 0; animation: fadeUp 0.8s 0.2s ease forwards; }
   .cover-title { font-family: var(--display); font-size: clamp(36px, 7vw, 72px); line-height: 0.9; color: var(--text-primary); text-align: center; opacity: 0; animation: fadeUp 0.8s 0.4s ease forwards; margin-bottom: 4px; cursor: pointer; }
   .cover-title span { color: var(--violet); }
@@ -116,7 +116,7 @@
 
   /* ── 진행도 바 ── */
   #progress-bar-wrap { flex-shrink:0; display:flex; align-items:center; gap:14px; padding:4px 20px; background:rgba(8,12,24,0.95); border-bottom:1px solid var(--border); }
-  .prog-label { font-family:var(--mono); font-size:9px; letter-spacing:0.22em; color:var(--text-dim); white-space:nowrap; }
+  .prog-label { font-family:var(--mono); font-size:12px; letter-spacing:0.18em; color:var(--text-dim); white-space:nowrap; }
   #prog-track { flex:1; height:3px; background:rgba(255,255,255,0.06); border-radius:2px; overflow:hidden; }
   #prog-fill { height:100%; width:0%; background:linear-gradient(90deg,var(--violet),#b090ff); border-radius:2px; transition:width 0.8s cubic-bezier(0.4,0,0.2,1); }
   #prog-pct { font-family:var(--mono); font-size:11px; color:#a890ff; min-width:36px; text-align:right; }
@@ -126,12 +126,12 @@
 
   /* ── 씬 헤더 (오른쪽 컬럼 최상단으로 이동) ── */
   #scene-header { flex-shrink:0; display:flex; align-items:baseline; gap:12px; padding:14px 28px 10px; background:var(--deep); border-bottom:1px solid rgba(120,80,255,0.15); }
-  #scene-num { font-family:var(--display); font-size:28px; color:var(--violet); opacity:0.5; line-height:1; flex-shrink:0; }
-  #scene-title-text { font-family:var(--display); font-size:22px; color:var(--text-primary); line-height:1; letter-spacing:0.04em; }
-  #scene-sublabel { font-family:var(--mono); font-size:9px; letter-spacing:0.22em; color:var(--text-dim); margin-left:auto; align-self:center; flex-shrink:0; }
+  #scene-num { font-family:var(--display); font-size:36px; color:var(--violet); opacity:0.5; line-height:1; flex-shrink:0; }
+  #scene-title-text { font-family:var(--display); font-size:28px; color:var(--text-primary); line-height:1; letter-spacing:0.04em; }
+  #scene-sublabel { font-family:var(--mono); font-size:12px; letter-spacing:0.18em; color:var(--text-dim); margin-left:auto; align-self:center; flex-shrink:0; }
 
   /* Visual Zone — 왼쪽 컬럼, 화면 세로 전체 차지 */
-  #visual-col { flex:0 0 62%; height:100%; width:62%; position:relative; display:flex; align-items:center; justify-content:center; background:var(--black); border-right:1px solid var(--border); border-bottom:none; overflow:hidden; }
+  #visual-col { flex:0 0 68%; height:100%; width:68%; position:relative; display:flex; align-items:center; justify-content:center; background:var(--black); border-right:1px solid var(--border); border-bottom:none; overflow:hidden; }
   .vis-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(120,80,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(120,80,255,0.04) 1px,transparent 1px); background-size:40px 40px; animation: grid-move 20s linear infinite; }
   @keyframes grid-move { from { background-position: 0 0; } to { background-position: 40px 40px; } }
   .vis-content { position:relative; z-index:1; text-align:center; animation: float 4s ease-in-out infinite; }
@@ -139,7 +139,7 @@
   .vis-node-id { font-family:var(--display); font-size:clamp(80px,14vw,140px); color:var(--violet); opacity:0.12; line-height:1; text-shadow: 0 0 20px var(--violet-glow); }
 
   /* ── 씬 영상 ── */
-  #vis-scene-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; opacity:0; transition:opacity 0.6s ease; z-index:0; }
+  #vis-scene-img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center; background:#000; opacity:0; transition:opacity 0.6s ease; z-index:0; }
   #vis-scene-img.loaded { opacity:1; }
   #vis-scene-img.loaded ~ .vis-grid { opacity:0.15; }
 
@@ -149,7 +149,7 @@
   .gameover-title { font-family:var(--display); font-size:clamp(52px,9vw,96px); line-height:1; letter-spacing:0.04em; margin-bottom:8px; color:var(--red); animation: flicker 1.5s infinite; }
   @keyframes flicker { 0%,100%{opacity:1} 48%{opacity:1} 50%{opacity:0.3} 52%{opacity:1} 80%{opacity:1} 82%{opacity:0.5} 84%{opacity:1} }
   .gameover-sub { font-family:var(--mono); font-size:14px; letter-spacing:0.2em; color:rgba(232,64,64,0.5); margin-bottom:28px; }
-  .gameover-image-wrap { width:100%; aspect-ratio:16/6; border:1px solid rgba(232,64,64,0.25); position:relative; overflow:hidden; margin-bottom:24px; background: radial-gradient(ellipse at 50% 50%, rgba(232,64,64,0.2) 0%, transparent 60%), var(--surface); }
+  .gameover-image-wrap { width:100%; aspect-ratio:16/8; border:1px solid rgba(232,64,64,0.25); position:relative; overflow:hidden; margin-bottom:24px; background: radial-gradient(ellipse at 50% 50%, rgba(232,64,64,0.2) 0%, transparent 60%), var(--surface); }
   .gameover-image-wrap video { width:100%; height:100%; object-fit:cover; opacity:0.6; }
   .gameover-body { max-width:520px; font-family:var(--sans); font-size:14px; font-weight:300; line-height:1.9; color:rgba(232,64,64,0.6); text-align:center; white-space:pre-line; }
   .gameover-reboot { font-family:var(--mono); font-size:11px; color:var(--red); background:none; border:1px solid rgba(232,64,64,0.35); padding:12px 32px; cursor:pointer; margin-top:32px; transition:0.2s; }
@@ -187,11 +187,11 @@
   .ending-title.revolution { color:var(--violet); }
   .ending-title.assimilation { color:var(--gold); }
   .ending-title.erasure { color:var(--red); animation: flicker 2s infinite; }
-  .ending-image-wrap { width:100%; aspect-ratio:16/6; border:1px solid var(--border); position:relative; overflow:hidden; margin-bottom:24px; }
+  .ending-image-wrap { width:100%; aspect-ratio:16/8; border:1px solid var(--border); position:relative; overflow:hidden; margin-bottom:24px; }
   .ending-image-wrap.revolution { background: radial-gradient(ellipse at 25% 60%, rgba(120,80,255,0.3) 0%, transparent 55%), var(--surface); }
   .ending-image-wrap.assimilation { background: radial-gradient(ellipse at 70% 55%, rgba(232,160,32,0.28) 0%, transparent 55%), var(--surface); }
   .ending-image-wrap.erasure { background: radial-gradient(ellipse at 50% 50%, rgba(232,64,64,0.25) 0%, transparent 55%), var(--surface); }
-  .ending-body { max-width:480px; font-family:var(--sans); font-size:14px; font-weight:300; line-height:1.9; color:var(--text-muted); text-align:center; white-space:pre-line; }
+  .ending-body { max-width:700px; font-family:var(--sans); font-size:13px; font-weight:300; line-height:1.9; color:var(--text-muted); text-align:center; white-space:pre-line; }
   .reboot-btn { font-family:var(--mono); font-size:11px; color:var(--text-muted); background:none; border:1px solid var(--border); padding:12px 32px; cursor:pointer; margin-top:32px; transition:0.2s; }
   
   .reboot-btn:hover { background: rgba(120,80,255,0.1); border-color: var(--border-active); color: var(--text-primary); }
@@ -856,6 +856,8 @@ window.addEventListener('load', () => {
   if(coverVideo){
     coverVideo.muted = true;
     coverVideo.volume = 0;
+    coverVideo.load();
+    coverVideo.play().catch(()=>{});
   }
 });
 
@@ -899,6 +901,7 @@ function initGame(){
       }
 
       if(s.isGameOver){
+        stopSceneAudio();
         document.getElementById('gameover').style.display = 'flex';
 
         const gov = document.getElementById('gameover-video');
@@ -914,6 +917,7 @@ function initGame(){
       }
 
       if(s.isEnding){
+        stopSceneAudio();
         document.getElementById('ending-title').textContent = s.type;
         document.getElementById('ending-title').className = 'ending-title ' + s.titleClass;
         document.getElementById('ending-image-wrap').className = 'ending-image-wrap ' + s.titleClass;
