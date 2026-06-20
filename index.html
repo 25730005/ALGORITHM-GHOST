@@ -183,7 +183,7 @@
   /* ENDING */
   #ending { display:none; position:fixed; inset:0; z-index:7000; background:var(--black); flex-direction:column; align-items:center; justify-content:center; padding:28px 20px; overflow-y:auto; }
   .ending-inner { display:flex; flex-direction:column; align-items:center; max-width:740px; width:100%; }
-  .ending-title { font-family:var(--display); font-size:clamp(52px,9vw,96px); line-height:1; letter-spacing:0.04em; margin-bottom:24px; }
+  .ending-title { font-family:var(--display); font-size:clamp(32px,5vw,56px); line-height:1; letter-spacing:0.04em; margin-bottom:14px; }
   .ending-title.revolution { color:var(--violet); }
   .ending-title.assimilation { color:var(--gold); }
   .ending-title.erasure { color:var(--red); animation: flicker 2s infinite; }
@@ -878,6 +878,7 @@ function initGame(){
 
       if(s.isGameOver){
         stopSceneAudio();
+        document.getElementById('vis-scene-img').pause();
         document.getElementById('gameover').style.display = 'flex';
 
         const gov = document.getElementById('gameover-video');
@@ -894,6 +895,7 @@ function initGame(){
 
       if(s.isEnding){
         stopSceneAudio();
+        document.getElementById('vis-scene-img').pause();
         document.getElementById('ending-title').textContent = s.type;
         document.getElementById('ending-title').className = 'ending-title ' + s.titleClass;
         document.getElementById('ending-image-wrap').className = 'ending-image-wrap ' + s.titleClass;
