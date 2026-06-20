@@ -77,11 +77,11 @@
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:10px 24px;
+    padding:8px 24px;
     background:var(--deep);
     border-bottom:1px solid var(--border);
     font-family:var(--display);
-    font-size:24px;
+    font-size:20px;
     letter-spacing:0.08em;
     color:var(--violet);
     cursor:pointer;
@@ -97,41 +97,41 @@
 
   /* ── HUD ── */
   #hud { flex-shrink:0; display:grid; grid-template-columns:1fr 1fr 1fr auto; border-bottom:1px solid var(--border); background:var(--deep); }
-  .hud-cell { padding:14px 24px; border-right:1px solid var(--border); display:flex; flex-direction:column; gap:8px; }
+  .hud-cell { padding:6px 20px; border-right:1px solid var(--border); display:flex; flex-direction:row; align-items:center; gap:10px; }
   .hud-cell:last-child { border-right:none; }
-  .hud-label { font-family:var(--mono); font-size:11px; letter-spacing:0.22em; color:rgba(200,210,255,0.55); }
-  .hud-row { display:flex; align-items:center; gap:10px; }
-  .hud-bar { flex:1; height:4px; background:rgba(255,255,255,0.08); border-radius:2px; overflow:hidden; }
+  .hud-label { font-family:var(--mono); font-size:9px; letter-spacing:0.18em; color:rgba(200,210,255,0.5); flex-shrink:0; width:38px; }
+  .hud-row { display:flex; align-items:center; gap:8px; flex:1; }
+  .hud-bar { flex:1; height:3px; background:rgba(255,255,255,0.08); border-radius:2px; overflow:hidden; }
   .hud-fill { height:100%; width:0%; border-radius:2px; transition:width 0.7s cubic-bezier(0.4,0,0.2,1); }
   #sync-fill  { background:var(--violet); box-shadow:0 0 6px rgba(120,80,255,0.5); }
   #integ-fill { background:var(--gold);   box-shadow:0 0 6px rgba(232,160,32,0.5); }
   #noise-fill { background:var(--red);    box-shadow:0 0 6px rgba(232,64,64,0.5); }
-  .hud-val { font-family:var(--mono); font-size:15px; font-weight:500; min-width:30px; text-align:right; }
+  .hud-val { font-family:var(--mono); font-size:12px; font-weight:500; min-width:24px; text-align:right; }
   #sync-val  { color:#a890ff; }
   #integ-val { color:#e8a020; }
   #noise-val { color:#f07070; }
-  .hud-scene { padding:14px 24px; display:flex; align-items:center; gap:10px; font-family:var(--mono); font-size:10px; color:var(--text-dim); }
+  .hud-scene { padding:6px 20px; display:flex; align-items:center; gap:8px; font-family:var(--mono); font-size:9px; color:var(--text-dim); }
   .scene-dot { width:6px; height:6px; border-radius:50%; background:var(--violet); box-shadow:0 0 8px var(--violet); flex-shrink:0; animation:pulse 2s infinite; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
   /* ── 진행도 바 ── */
-  #progress-bar-wrap { flex-shrink:0; display:flex; align-items:center; gap:14px; padding:8px 24px; background:rgba(8,12,24,0.95); border-bottom:1px solid var(--border); }
+  #progress-bar-wrap { flex-shrink:0; display:flex; align-items:center; gap:14px; padding:4px 20px; background:rgba(8,12,24,0.95); border-bottom:1px solid var(--border); }
   .prog-label { font-family:var(--mono); font-size:9px; letter-spacing:0.22em; color:var(--text-dim); white-space:nowrap; }
   #prog-track { flex:1; height:3px; background:rgba(255,255,255,0.06); border-radius:2px; overflow:hidden; }
   #prog-fill { height:100%; width:0%; background:linear-gradient(90deg,var(--violet),#b090ff); border-radius:2px; transition:width 0.8s cubic-bezier(0.4,0,0.2,1); }
   #prog-pct { font-family:var(--mono); font-size:11px; color:#a890ff; min-width:36px; text-align:right; }
 
-  /* ── STAGE ── */
-  #stage { flex:1; display:flex; flex-direction:column; overflow:hidden; }
+  /* ── STAGE: 좌(영상) / 우(대사+선택) 가로 분할 ── */
+  #stage { flex:1; display:flex; flex-direction:row; overflow:hidden; }
 
-  /* ── 씬 헤더 ── */
-  #scene-header { flex-shrink:0; display:flex; align-items:baseline; gap:14px; padding:16px 28px 12px; background:var(--deep); border-bottom:1px solid rgba(120,80,255,0.15); }
-  #scene-num { font-family:var(--display); font-size:34px; color:var(--violet); opacity:0.5; line-height:1; flex-shrink:0; }
-  #scene-title-text { font-family:var(--display); font-size:28px; color:var(--text-primary); line-height:1; letter-spacing:0.04em; }
+  /* ── 씬 헤더 (오른쪽 컬럼 최상단으로 이동) ── */
+  #scene-header { flex-shrink:0; display:flex; align-items:baseline; gap:12px; padding:14px 28px 10px; background:var(--deep); border-bottom:1px solid rgba(120,80,255,0.15); }
+  #scene-num { font-family:var(--display); font-size:28px; color:var(--violet); opacity:0.5; line-height:1; flex-shrink:0; }
+  #scene-title-text { font-family:var(--display); font-size:22px; color:var(--text-primary); line-height:1; letter-spacing:0.04em; }
   #scene-sublabel { font-family:var(--mono); font-size:9px; letter-spacing:0.22em; color:var(--text-dim); margin-left:auto; align-self:center; flex-shrink:0; }
 
-  /* Visual Zone */
-  #visual-col { flex:0 0 48vh; height:48vh; width:100%; position:relative; display:flex; align-items:center; justify-content:center; background:var(--black); border-bottom:1px solid var(--border); overflow:hidden; }
+  /* Visual Zone — 왼쪽 컬럼, 화면 세로 전체 차지 */
+  #visual-col { flex:0 0 62%; height:100%; width:62%; position:relative; display:flex; align-items:center; justify-content:center; background:var(--black); border-right:1px solid var(--border); border-bottom:none; overflow:hidden; }
   .vis-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(120,80,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(120,80,255,0.04) 1px,transparent 1px); background-size:40px 40px; animation: grid-move 20s linear infinite; }
   @keyframes grid-move { from { background-position: 0 0; } to { background-position: 40px 40px; } }
   .vis-content { position:relative; z-index:1; text-align:center; animation: float 4s ease-in-out infinite; }
@@ -139,7 +139,7 @@
   .vis-node-id { font-family:var(--display); font-size:clamp(80px,14vw,140px); color:var(--violet); opacity:0.12; line-height:1; text-shadow: 0 0 20px var(--violet-glow); }
 
   /* ── 씬 영상 ── */
-  #vis-scene-img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center; opacity:0; transition:opacity 0.6s ease; z-index:0; }
+  #vis-scene-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; opacity:0; transition:opacity 0.6s ease; z-index:0; }
   #vis-scene-img.loaded { opacity:1; }
   #vis-scene-img.loaded ~ .vis-grid { opacity:0.15; }
 
@@ -158,21 +158,27 @@
   /* ENDING 영상 */
   .ending-image-wrap video { width:100%; height:100%; object-fit:cover; opacity:0.6; }
   
-  /* Interaction */
-  #interact-col { flex:1; display:flex; flex-direction:column; background:var(--panel); overflow:hidden; }
-  #log-panel { flex:1; overflow-y:auto; padding:24px 32px 12px; scrollbar-width:thin; scrollbar-color:var(--border) transparent; }
-  .log-scene-label { font-family:var(--mono); font-size:10px; letter-spacing:0.25em; color:var(--violet); margin-bottom:16px; display:flex; align-items:center; gap:10px; }
-  .log-scene-label::after { content:''; flex:1; height:1px; background:var(--border); }
+  /* Interaction (오른쪽 컬럼: 헤더 + 대사 + 선택지) */
+  #interact-col { flex:1; height:100%; display:flex; flex-direction:column; background:var(--panel); overflow:hidden; min-width:0; }
+  #log-panel { flex:1; min-height:0; overflow-y:auto; padding:20px 32px 12px; scrollbar-width:thin; scrollbar-color:var(--border) transparent; }
+  .log-scene-label { display:none; }
   #story-text { font-family:var(--sans); font-size:17px; font-weight:400; line-height:2.0; color:rgba(220,225,245,0.85); white-space:pre-line; }
+  .typing-cursor { display:inline-block; width:9px; height:17px; background:var(--violet); margin-left:2px; vertical-align:-2px; animation: cursorBlink 0.8s step-end infinite; box-shadow:0 0 6px var(--violet); }
+  @keyframes cursorBlink { 0%,50%{opacity:1} 50.01%,100%{opacity:0} }
 
   #choice-panel { padding:12px 28px 24px; display:flex; flex-direction:column; gap:10px; }
   
   /* 2순위 개선: Choice Hover Preview */
-  .choice-btn { position: relative; width:100%; text-align:left; background:rgba(255,255,255,0.02); border:1px solid var(--border); color:var(--text-muted); font-family:var(--mono); font-size:13px; padding:15px 18px; cursor:pointer; transition:all 0.2s; display:flex; align-items:center; gap:12px; clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%); }
+  .choice-btn { position: relative; width:100%; text-align:left; background:rgba(255,255,255,0.02); border:1px solid var(--border); color:var(--text-muted); font-family:var(--mono); font-size:13px; padding:15px 18px; cursor:pointer; transition:all 0.2s; display:flex; align-items:center; justify-content:space-between; gap:12px; clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%); }
+  .choice-btn .label { display:flex; align-items:center; gap:12px; }
   .choice-btn .prompt { color:var(--violet); opacity:0.7; flex-shrink:0; }
   .choice-btn:hover { border-color:var(--border-active); background:var(--violet-glow); color:var(--text-primary); transform:translateX(10px); box-shadow:0 0 15px rgba(120,80,255,.25); }
-  .choice-preview { position: absolute; right: 16px; font-size: 10px; color: var(--gold); opacity: 0; transition: 0.2s; }
+  .choice-preview { font-size: 10px; color: var(--gold); opacity: 0.65; flex-shrink:0; white-space:nowrap; letter-spacing:0.04em; }
   .choice-btn:hover .choice-preview { opacity: 1; }
+  /* 타이핑 중 선택지 비활성화 — 흐리고 클릭 불가 */
+  .choice-btn.is-disabled { opacity:0.35; pointer-events:none; filter:blur(0.4px); transform:translateY(4px); }
+  .choice-btn.is-enabled  { animation: choiceWake 0.4s ease forwards; }
+  @keyframes choiceWake { from { opacity:0.35; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } }
 
   /* ENDING */
   #ending { display:none; position:fixed; inset:0; z-index:7000; background:var(--black); flex-direction:column; align-items:center; justify-content:center; padding:28px 20px; overflow-y:auto; }
@@ -262,18 +268,17 @@
   </div>
 
   <div id="stage">
-    <div id="scene-header">
-      <div id="scene-num">S1</div>
-      <div id="scene-title-text">추방된 데이터</div>
-      <div id="scene-sublabel">ENTRY_LOG</div>
-    </div>
-
     <div id="visual-col">
       <video id="vis-scene-img" src="" width="1380" height="950" autoplay loop playsinline></video>
       <div class="vis-grid"></div>
     </div>
 
     <div id="interact-col">
+      <div id="scene-header">
+        <div id="scene-num">S1</div>
+        <div id="scene-title-text">추방된 데이터</div>
+        <div id="scene-sublabel">ENTRY_LOG</div>
+      </div>
       <div id="log-panel">
         <div class="log-scene-label" id="log-scene-label">ENTRY_LOG</div>
         <div id="story-text"></div>
@@ -589,16 +594,17 @@ K라는 이름은 어떤 로그에도 남지 않는다.
   function formatStoryText(text) {
     let html = stripDirections(text);
 
+    // 지문(괄호 연출/감정 묘사) 제거 — "바트 (무전)" 라벨은 보존
+    html = html.replace(/\(지문:[\s\S]*?\)\s*/g, '');
+    html = html.replace(/(?<!바트 )\([^()]*\)\s*/g, '');
+
     html = html.replace(/퍼펙트 원:/g, '<span style="color:#e8a020;font-weight:700;font-family:Share Tech Mono;letter-spacing:.05em;">퍼펙트 원:</span>');
     html = html.replace(/K:/g, '<span style="color:#7850ff;font-weight:700;font-family:Share Tech Mono;letter-spacing:.05em;">K:</span>');
     html = html.replace(/제로:/g, '<span style="color:#3fd4c5;font-weight:700;font-family:Share Tech Mono;letter-spacing:.05em;">제로:</span>');
     html = html.replace(/시스템 음성:/g, '<span style="color:#e84040;font-weight:700;font-family:Share Tech Mono;letter-spacing:.05em;">시스템 음성:</span>');
     html = html.replace(/바트 \(무전\):/g, '<span style="color:#66b3ff;font-weight:700;font-family:Share Tech Mono;letter-spacing:.05em;">바트 (무전):</span>');
 
-    html = html.replace(/\(지문:([\s\S]*?)\)/g,
-      '<div style="color:#8b93a7;font-style:italic;font-size:0.95em;margin:8px 0;">($1)</div>');
-
-    return html.replace(/\n/g,'<br>');
+    return html.replace(/\n\s*\n/g,'<br><br>').replace(/\n/g,'<br>');
   }
 
 
@@ -798,7 +804,6 @@ function initGame(){
       document.getElementById('scene-title-text').textContent = s.nodeLabel;
       document.getElementById('scene-sublabel').textContent = s.label || '';
       document.getElementById('log-scene-label').textContent = s.label || '';
-      document.getElementById('story-text').innerHTML = formatStoryText(s.text);
 
       const imgEl = document.getElementById('vis-scene-img');
       const imgSrc = SCENE_IMAGES[id];
@@ -816,14 +821,15 @@ function initGame(){
       const panel = document.getElementById('choice-panel');
       panel.innerHTML = '';
       const choices = s.getChoices ? s.getChoices() : (s.choices || []);
-      
+
       choices.forEach((c, i) => {
         const btn = document.createElement('button');
-        btn.className = 'choice-btn';
+        btn.className = 'choice-btn is-disabled';
         const previewText = c.msg ? `[${c.msg}]` : "";
-        btn.innerHTML = `<span class="prompt">${String(i+1).padStart(2,'0')}</span> ${c.text} <span class="choice-preview">${previewText}</span>`;
-        
+        btn.innerHTML = `<span class="label"><span class="prompt">${String(i+1).padStart(2,'0')}</span> ${c.text}</span><span class="choice-preview">${previewText}</span>`;
+
         btn.onclick = () => {
+          if(btn.classList.contains('is-disabled')) return;
           playClick();
           if(c.effects) {
             for(let k in c.effects) state[k] = Math.max(0, Math.min(100, state[k] + c.effects[k]));
@@ -832,6 +838,20 @@ function initGame(){
         };
         panel.appendChild(btn);
       });
+
+      // 대사 타이핑 효과 — 끝나면 선택지가 순차적으로 활성화(클릭 가능)됨
+      const storyEl = document.getElementById('story-text');
+      typeHTML(storyEl, formatStoryText(s.text), () => {
+        const btns = panel.querySelectorAll('.choice-btn');
+        btns.forEach((b, idx) => {
+          setTimeout(() => {
+            b.classList.remove('is-disabled');
+            b.classList.add('is-enabled');
+          }, idx * 90);
+        });
+      });
+      // 로그 패널 클릭 시 타이핑 즉시 스킵
+      document.getElementById('log-panel').onclick = () => { if(typingSkip) typingSkip(); };
 
       updateHUD();
       updateProgress(id);
@@ -858,6 +878,58 @@ function initGame(){
     const t = document.getElementById('toast');
     t.textContent = msg; t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 2000);
+  }
+
+  /* ── 타이핑 효과 ──
+     HTML 태그(<span>...</span>, <br>)는 통째로 한 번에 붙이고,
+     일반 글자만 한 글자씩 출력한다. 클릭하면 즉시 완료(스킵). */
+  let typingTimer = null;
+  let typingSkip = null;
+
+  function typeHTML(el, html, onComplete){
+    if(typingTimer) clearTimeout(typingTimer);
+    if(typingSkip) typingSkip();
+
+    // 토큰화: 태그는 하나의 토큰, 그 외엔 글자 하나씩
+    const tokens = html.match(/<[^>]+>|[^<]/g) || [];
+    let i = 0;
+    let out = '';
+    el.innerHTML = '<span class="typing-cursor"></span>';
+
+    function finishNow(){
+      if(typingTimer) clearTimeout(typingTimer);
+      el.innerHTML = html;
+      typingSkip = null;
+      if(onComplete) onComplete();
+    }
+    typingSkip = finishNow;
+
+    function step(){
+      if(i >= tokens.length){
+        el.innerHTML = html;
+        typingSkip = null;
+        if(onComplete) onComplete();
+        return;
+      }
+      // 태그는 즉시(한 번에) 추가, 글자는 한 글자씩 + 약간의 속도 변주
+      let chunk = tokens[i];
+      while(tokens[i] && tokens[i].startsWith('<')){
+        out += tokens[i];
+        i++;
+        chunk = tokens[i];
+      }
+      if(tokens[i] !== undefined){
+        out += tokens[i];
+        i++;
+      }
+      el.innerHTML = out + '<span class="typing-cursor"></span>';
+      const ch = tokens[i-1] || '';
+      let delay = 18; // 기본 타이핑 속도
+      if(ch === '.' || ch === '!' || ch === '?' ) delay = 220;
+      else if(ch === ',' || ch === '\n') delay = 90;
+      typingTimer = setTimeout(step, delay);
+    }
+    step();
   }
 </script>
 </body>
